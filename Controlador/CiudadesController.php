@@ -83,7 +83,7 @@ class CiudadesController
                 //$htmlTable .= "<td>" . $ObjCiudades->getDepartamento() . "</td>";
                 $htmlTable .= "<td>" . $ObjCiudades->getDepartamentosIdDepartamentos() . "</td>";
                 $htmlTable .= "<td>" . $ObjCiudades->getCiudad() . "</td>";
-
+                $htmlTable .= "<td>" . $ObjCiudades->getDepartamentosIdDepartamentos() . "</td>";
                 $htmlTable .= "</tr>";
 
             }

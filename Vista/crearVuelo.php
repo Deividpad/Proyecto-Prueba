@@ -102,7 +102,7 @@ require("../Controlador/RutasController.php");
                                       <div class="form-group ">
                                           <label for="cname" class="control-label col-lg-2">Fecha <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" id="Fecha" name="Fecha" type="datetime-local"  required /> <!--min="2017-01-01"  max="2017-01-01"-->
+                                              <input class="form-control" id="Fecha" name="Fecha" type="date"  required /> <!--min="2017-01-01"  max="2017-01-01"-->
                                           </div>
                                       </div>
 

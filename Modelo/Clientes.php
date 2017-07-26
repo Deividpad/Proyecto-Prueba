@@ -1,12 +1,8 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: yeimy
- * Date: 10/07/2017
- * Time: 11:39 AM
- */
-class pasajero extends db_abstract_class
+require_once('db_abstract_class.php');
+
+class Clientes extends db_abstract_class
 {
     private $idPasajero;
     private $Tipo_Documento;
@@ -159,27 +155,43 @@ class pasajero extends db_abstract_class
         // TODO: Implement buscarForId() method.
     }
 
-    protected static function buscar($query)
+    public static function buscar($query)
     {
-        // TODO: Implement buscar() method.
+        $arrayclientes = array();
+        $tmp = new Clientes();
+        $getrows = $tmp->getRows($query);
+
+        foreach ($getrows as $valor) {
+            $cliente = new Clientes();
+            $cliente->idPasajero = $valor['idPasajero'];
+            $cliente->Tipo_Documento = $valor['Tipo_Documento'];
+            $cliente->Documento = $valor['Documento'];
+            $cliente->Nombre = $valor['Nombre'];
+            $cliente->Apellido = $valor['Apellido'];
+            $cliente->Telefono = $valor['Telefono'];
+            $cliente->Direccion= $valor['Direccion'];
+            array_push($arrayclientes, $cliente);
+        }
+        $tmp->Disconnect();
+        return $arrayclientes;
     }
 
-    protected static function getAll()
+    public static function getAll()
     {
-        // TODO: Implement getAll() method.
+        return Clientes::buscar("SELECT * FROM pasajero");
     }
 
-    protected function insertar()
+    public function insertar()
     {
 
     }
 
-    protected function editar()
+    public function editar()
     {
         // TODO: Implement editar() method.
     }
 
-    protected function eliminar($id)
+    public function eliminar($id)
     {
         // TODO: Implement eliminar() method.
     }

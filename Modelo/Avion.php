@@ -9,6 +9,7 @@ class avion extends db_abstract_class
     private $Modelo;
     private $Tiempo_Vuelo;
     private $Capacidad_Silla;
+    private $Asiento_Negocios_Fin;
     private $Estado;
     private $Aerolinea_idAerolinea;
 
@@ -26,6 +27,7 @@ class avion extends db_abstract_class
             $this->Modelo = "";
             $this->Tiempo_Vuelo = "";
             $this->Capacidad_Silla = "";
+            $this->Asiento_Negocios_Fin = "";
             $this->Estado = "";
             $this->Aerolinea_idAerolinea = "";
         }
@@ -84,14 +86,16 @@ class avion extends db_abstract_class
 
     public function insertar()
     {   echo "Entro a insertar";
-        $this->insertRow("INSERT INTO aerolinea.avion VALUES (NULL, ?,?,?,?,?,?)", array(
+        $this->insertRow("INSERT INTO aerolinea.avion VALUES (NULL, ?,?,?,?,?,?,?)", array(
 
                 $this->Nombre,
                 $this->Modelo,
                 $this->Tiempo_Vuelo,
                 $this->Capacidad_Silla,
-                $this->Estado,
+                $this->Asiento_Negocios_Fin,
                 $this->Aerolinea_idAerolinea,
+                $this->Estado,
+
             )
         );
         $this->Disconnect();

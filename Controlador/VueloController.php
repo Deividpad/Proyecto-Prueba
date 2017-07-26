@@ -276,7 +276,7 @@ class VueloController
                 $htmlTable .= "<td> $Destino</td>";
 
                 $htmlTable .= "<td>" . $ObjVuelo->getEstado() . "</td>";
-                $icons = "<a class='btn btn-success btn-sm' href='crearPasajero.php?idVuelo=".$ObjVuelo->getidVuelo()."' title='Bootstrap 3 themes generator'>Vender Vuelo</a>";
+                $icons = "<a class='btn btn-success btn-sm' href='gestionarClientes.php?idVuelo=".$ObjVuelo->getidVuelo()."' title='Bootstrap 3 themes generator'>Vender Vuelo</a>";
                 $htmlTable .= "<td>$icons</td>";
                 $htmlTable .= "</tr>";
             }
