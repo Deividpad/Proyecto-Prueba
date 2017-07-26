@@ -36,8 +36,8 @@ class RutasController
                     $arrayRuta = array();
                     $arrayRuta['Origen'] = $_POST['idCiudades'];
                     $arrayRuta['Destino'] = $_POST['idCiudades2'];
-                    $arrayRuta['Precio_Negocios']= 200;
-                    $arrayRuta['Precio_Economico']= 200;
+                    $arrayRuta['Precio_Negocios']= $_POST['PrecioNegocio'];
+                    $arrayRuta['Precio_Economico']= $_POST['PrecioEconomico'];
                     $arrayRuta['Duracion'] = $_POST['Hora'];
                     $arrayRuta['Estado'] = $_POST['Estado'];
                     $Rutas = new Rutas($arrayRuta);
@@ -102,6 +102,8 @@ class RutasController
                 $destino = $ciudad->getCiudad();
                 $htmlTable .= "<td>$destino</td>";
                 $htmlTable .= "<td>" . $ObjRutas->getDuracion() . "</td>";
+                $htmlTable .= "<td>" . $ObjRutas->getPrecioNegocios() . "</td>";
+                $htmlTable .= "<td>" . $ObjRutas->getPrecioEconomico() . "</td>";
                 $htmlTable .= "<td>" . $ObjRutas->getEstado() . "</td>";
 
                 $icons = "";

@@ -107,6 +107,20 @@ require("../Controlador/CiudadesController.php");
                                       </div>
 
                                       <div class="form-group ">
+                                          <label for="cemail" class="control-label col-lg-2">Precio Negocios <span class="required">*</span></label>
+                                          <div class="col-lg-10">
+                                              <input class="form-control " id="PrecioNegocio" name="PrecioNegocio" type="text" required />
+                                          </div>
+                                      </div>
+
+                                      <div class="form-group ">
+                                          <label for="cemail" class="control-label col-lg-2">Precio Economico <span class="required">*</span></label>
+                                          <div class="col-lg-10">
+                                              <input class="form-control " id="PrecioEconomico" name="PrecioEconomico" type="text" required />
+                                          </div>
+                                      </div>
+
+                                      <div class="form-group ">
                                           <label for="cemail" class="control-label col-lg-2">Duraccion(Hrs) <span class="required">*</span></label>
                                           <div class="col-lg-10">
                                               <input class="form-control " id="Hora"   name="Hora" min="1" max="20" type="number" required />

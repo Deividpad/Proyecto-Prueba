@@ -80,9 +80,10 @@ class CiudadesController
             foreach ($arrayCiudades as $ObjCiudades) {
                 $htmlTable .= "<tr>";
                 $htmlTable .= "<td>" . $ObjCiudades->getIdCiudades() . "</td>";
-                $htmlTable .= "<td>" . $ObjCiudades->getDepartamento() . "</td>";
-                $htmlTable .= "<td>" . $ObjCiudades->getCiudad() . "</td>";
+                //$htmlTable .= "<td>" . $ObjCiudades->getDepartamento() . "</td>";
                 $htmlTable .= "<td>" . $ObjCiudades->getDepartamentosIdDepartamentos() . "</td>";
+                $htmlTable .= "<td>" . $ObjCiudades->getCiudad() . "</td>";
+
                 $htmlTable .= "</tr>";
 
             }
