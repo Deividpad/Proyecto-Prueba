@@ -1,6 +1,7 @@
 <?php
 
 require_once (__DIR__.'/../Modelo/Ciudades.php');
+require_once (__DIR__.'/../Modelo/Departamentos.php');
 
 if(!empty($_GET['action'])){
     CiudadesController::main($_GET['action']);
@@ -26,14 +27,19 @@ class CiudadesController
 
     static public function crear()
     {
-echo "entro al metodo";
+
         try {
+            echo "entro al metodo";
             $arrayCiudades = array();
 
-            $arrayCiudades['Departamento'] = $_POST['Departamento'];
             $arrayCiudades['Ciudad'] = $_POST['Ciudad'];
+            $arrayCiudades['Departamentos_idDepartamentos'] = $_POST['idDepartamentos'];
             $Ciudades = new Ciudades ($arrayCiudades);
+            //echo "La ciudad".$_POST['Ciudad'];;
+            //echo "El id depar".$_POST['idDepartamentos'];
+            //var_dump($Ciudades);
             $Ciudades->insertar();
+
             header("Location: ../Vista/gestionarCiudades.php?respuesta=correcto");
         } catch (Exception $e) {
             header("Location: ../Vista/gestionarCiudades.php?respuesta=error");
@@ -76,6 +82,7 @@ echo "entro al metodo";
                 $htmlTable .= "<td>" . $ObjCiudades->getIdCiudades() . "</td>";
                 $htmlTable .= "<td>" . $ObjCiudades->getDepartamento() . "</td>";
                 $htmlTable .= "<td>" . $ObjCiudades->getCiudad() . "</td>";
+                $htmlTable .= "<td>" . $ObjCiudades->getDepartamentosIdDepartamentos() . "</td>";
                 $htmlTable .= "</tr>";
 
             }

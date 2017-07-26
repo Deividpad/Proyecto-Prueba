@@ -7,7 +7,7 @@ require_once('db_abstract_class.php');
  * Date: 25/07/2017
  * Time: 14:06
  */
-class Departamentos
+class Departamentos extends db_abstract_class
 {
    private $idDepartamentos;
    private $Departamentos;
@@ -70,7 +70,7 @@ class Departamentos
 
     public function insertar()
     {
-        $this->insertRow("INSERT INTO aerolinea.departamentos VALUES (NULL, ?,?)", array(
+        $this->insertRow("INSERT INTO aerolinea.departamentos VALUES (NULL, ?)", array(
 
                 $this->Departamentos,
 
@@ -83,11 +83,50 @@ class Departamentos
     {
         $this->updateRow("UPDATE ciudades.idCiudades SET Ciudad = ? WHERE idCuidades = ?", array(
 
-            //$this->Departamento,
-            $this->Ciudad,
+            $this->Departamentos,
 
         ));
         $this->Disconnect();
     }
+
+    protected function eliminar($id)
+    {
+        // TODO: Implement eliminar() method.
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdDepartamentos()
+    {
+        return $this->idDepartamentos;
+    }
+
+    /**
+     * @param string $idDepartamentos
+     */
+    public function setIdDepartamentos($idDepartamentos)
+    {
+        $this->idDepartamentos = $idDepartamentos;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDepartamentos()
+    {
+        return $this->Departamentos;
+    }
+
+    /**
+     * @param string $Departamentos
+     */
+    public function setDepartamentos($Departamentos)
+    {
+        $this->Departamentos = $Departamentos;
+    }
+
+
+
 
 }

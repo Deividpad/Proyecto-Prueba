@@ -36,6 +36,8 @@ class RutasController
                     $arrayRuta = array();
                     $arrayRuta['Origen'] = $_POST['idCiudades'];
                     $arrayRuta['Destino'] = $_POST['idCiudades2'];
+                    $arrayRuta['Precio_Negocios']= 200;
+                    $arrayRuta['Precio_Economico']= 200;
                     $arrayRuta['Duracion'] = $_POST['Hora'];
                     $arrayRuta['Estado'] = $_POST['Estado'];
                     $Rutas = new Rutas($arrayRuta);

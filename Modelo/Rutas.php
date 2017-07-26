@@ -7,6 +7,8 @@ class Rutas extends db_abstract_class
     private $idRutas;
     private $Origen;
     private $Destino;
+    private $Precio_Negocios;
+    private $Precio_Economico;
     private $Duracion;
     private $Estado;
 
@@ -22,6 +24,8 @@ class Rutas extends db_abstract_class
             $this->idRutas = "";
             $this->Origen = "";
             $this->Destino = "";
+            $this->Precio_Negocios = "";
+            $this->Precio_Economico = "";
             $this->Duracion = "";
             $this->Estado = "";
         }
@@ -43,6 +47,8 @@ class Rutas extends db_abstract_class
             $Rutas->idRutas = $getrow['idRutas'];
             $Rutas->Origen = $getrow['Origen'];
             $Rutas->Destino = $getrow['Destino'];
+            $Rutas->Precio_Negocios = $getrow['Precio_Negocios'];
+            $Rutas->Precio_Economico = $getrow['Precio_Economico'];
             $Rutas->Duracion = $getrow['Duracion'];
             $Rutas->Estado = $getrow['Estado'];
             $Rutas->Disconnect();
@@ -63,6 +69,8 @@ class Rutas extends db_abstract_class
             $Rutas->idRutas = $valor['idRutas'];
             $Rutas->Origen = $valor['Origen'];
             $Rutas->Destino = $valor['Destino'];
+            $Rutas->Precio_Negocios = $valor['Precio_Negocios'];
+            $Rutas->Precio_Economico = $valor['Precio_Economico'];
             $Rutas->Duracion = $valor['Duracion'];
             $Rutas->Estado = $valor['Estado'];
             array_push($arrayRutas, $Rutas);
@@ -79,10 +87,12 @@ class Rutas extends db_abstract_class
     public function insertar()
     {
         echo "Entro a insertar";
-        $this->insertRow("INSERT INTO aerolinea.rutas VALUES (NULL, ?,?,?,?)", array(
+        $this->insertRow("INSERT INTO aerolinea.rutas VALUES (NULL, ?,?,?,?,?,?)", array(
 
                 $this->Origen,
                 $this->Destino,
+                $this->Precio_Negocios,
+                $this->Precio_Economico,
                 $this->Duracion,
                 $this->Estado,
             )
@@ -93,10 +103,12 @@ class Rutas extends db_abstract_class
     public function editar()
     {
         $arrUser = (array) $this;
-        $this->updateRow("UPDATE aerolinea.rutas SET Origen = ?, Destino = ?, Duracion = ?,
-          Estado = ? WHERE idRutas = ?", array(
+        $this->updateRow("UPDATE aerolinea.rutas SET Origen = ?, Destino = ?, Precio_Negocios = ?, Precio_Economico = ?, Duracion = ?,
+          Estado = ?WHERE idRutas = ?", array(
             $this->Origen,
             $this->Destino,
+            $this->Precio_Negocios,
+            $this->Precio_Economico,
             $this->Duracion,
             $this->Estado,
             $this->idRutas,
@@ -154,6 +166,38 @@ class Rutas extends db_abstract_class
     public function setDestino($Destino)
     {
         $this->Destino = $Destino;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrecioNegocios()
+    {
+        return $this->Precio_Negocios;
+    }
+
+    /**
+     * @param string $Precio_Negocios
+     */
+    public function setPrecioNegocios($Precio_Negocios)
+    {
+        $this->Precio_Negocios = $Precio_Negocios;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrecioEconomico()
+    {
+        return $this->Precio_Economico;
+    }
+
+    /**
+     * @param string $Precio_Economico
+     */
+    public function setPrecioEconomico($Precio_Economico)
+    {
+        $this->Precio_Economico = $Precio_Economico;
     }
 
     /**

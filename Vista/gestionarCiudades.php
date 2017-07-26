@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<?php require "../Controlador/CiudadesController.php";?>
+<?php require "../Controlador/CiudadesController.php";
+require("../Controlador/DepartamentosController.php");
+?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -90,12 +92,15 @@
                               <div class="form">
                                 <form class="form-validate form-horizontal" method="post" action="../Controlador/CiudadesController.php?action=crear">
 
-                                      <div class="form-group ">
-                                          <label for="cemail" class="control-label col-lg-2">Departamento <span class="required">*</span></label>
-                                          <div class="col-lg-10">
-                                              <input class="form-control " id="Departamento" name="Departamento" type="text" required />
-                                          </div>
-                                      </div>
+
+                                    <div class="form-group ">
+                                        <label for="cemail" class="control-label col-lg-2">Departamentos<span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <?php echo DepartamentosController::SelectDepartamentos(true, "idDepartamentos","idDepartamentos","form-control")?>
+                                        </div>
+                                    </div>
+
+
 
                                       <div class="form-group ">
                                           <label for="cemail" class="control-label col-lg-2">Ciudad <span class="required">*</span></label>

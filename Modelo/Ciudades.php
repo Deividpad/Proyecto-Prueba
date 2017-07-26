@@ -5,7 +5,6 @@ require_once('db_abstract_class.php');
 class Ciudades extends db_abstract_class
 {
     private $idCiudades;
-    //private $Departamento;
     private $Ciudad;
     private $Departamentos_idDepartamentos;
 
@@ -23,7 +22,6 @@ class Ciudades extends db_abstract_class
             }
         }else {
             $this->idCiudades = "";
-            //$this->Departamento = "";
             $this->Ciudad = "";
             $this->Departamentos_idDepartamentos = "";
         }
@@ -41,9 +39,8 @@ class Ciudades extends db_abstract_class
         if ($id > 0) {
             $getrow = $ciudades->getRow("SELECT * FROM ciudades WHERE idCiudades =?", array($id));
             $ciudades->idCiudades = $getrow['idCiudades'];
-            //$ciudades->Departamento = $getrow['Departamento'];
             $ciudades->Ciudad = $getrow['Ciudad'];
-            $ciudades->Departamentos_idDepartamentos = $getrow['$Departamentos_idDepartamentos'];
+           // $ciudades->Departamentos_idDepartamentos = $getrow['Departamentos_idDepartamentos'];
             $ciudades->Disconnect();
             return $ciudades;
         } else {
@@ -60,7 +57,6 @@ class Ciudades extends db_abstract_class
         foreach ($getrows as $valor) {
             $ciudades = new ciudades();
             $ciudades->idCiudades = $valor['idCiudades'];
-            //$ciudades->Departamento = $valor['Departamento'];
             $ciudades->Ciudad = $valor['Ciudad'];
             $ciudades->Departamentos_idDepartamentos = $valor['Departamentos_idDepartamentos'];
             array_push($arrayCiudades, $ciudades);
@@ -76,11 +72,10 @@ class Ciudades extends db_abstract_class
 
     public function insertar()
     {
-        $this->insertRow("INSERT INTO aerolinea.ciudades VALUES (NULL, ?)", array(
+        $this->insertRow("INSERT INTO aerolinea.ciudades VALUES (NULL, ?,?)", array(
 
-                //$this->Departamento,
-                $this->Ciudad,
-                $this->Departamentos_idDepartamentos,
+            $this->Ciudad,
+            $this->Departamentos_idDepartamentos,
             )
         );
         $this->Disconnect();
@@ -90,8 +85,8 @@ class Ciudades extends db_abstract_class
     {
         $this->updateRow("UPDATE ciudades.idCiudades SET Ciudad = ? WHERE idCuidades = ?", array(
 
-            //$this->Departamento,
             $this->Ciudad,
+            $this->Departamentos_idDepartamentos,
 
         ));
         $this->Disconnect();
