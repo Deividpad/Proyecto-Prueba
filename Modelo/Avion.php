@@ -85,7 +85,7 @@ class avion extends db_abstract_class
     }
 
     public function insertar()
-    {   echo "Entro a insertar";
+    {
         $this->insertRow("INSERT INTO aerolinea.avion VALUES (NULL, ?,?,?,?,?,?,?)", array(
 
                 $this->Nombre,

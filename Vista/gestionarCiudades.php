@@ -147,7 +147,7 @@ require("../Controlador/DepartamentosController.php");
                     <th>Id</th>
                     <th>Departamento</th>
                     <th>Ciudad</th>                                        
-                    <th>Acciones</th>
+                    <!--th>Acciones</th-->
                   </tr>
                 </thead>   
                 <tbody>

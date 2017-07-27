@@ -78,12 +78,14 @@ class CiudadesController
 
         if (count($arrayCiudades) >=1) {
             foreach ($arrayCiudades as $ObjCiudades) {
-                $htmlTable .= "<tr>";
+                $htmlTable .= "<tr style='color: black'>";
                 $htmlTable .= "<td>" . $ObjCiudades->getIdCiudades() . "</td>";
                 //$htmlTable .= "<td>" . $ObjCiudades->getDepartamento() . "</td>";
-                $htmlTable .= "<td>" . $ObjCiudades->getDepartamentosIdDepartamentos() . "</td>";
+                $idep = $ObjCiudades->getDepartamentosIdDepartamentos();
+                $dep = Departamentos::buscarForId($idep);
+                $htmlTable .= "<td>" . $dep->getDepartamentos() . "</td>";
                 $htmlTable .= "<td>" . $ObjCiudades->getCiudad() . "</td>";
-                $htmlTable .= "<td>" . $ObjCiudades->getDepartamentosIdDepartamentos() . "</td>";
+                //$htmlTable .= "<td>" . $ObjCiudades->getDepartamentosIdDepartamentos() . "</td>";
                 $htmlTable .= "</tr>";
 
             }

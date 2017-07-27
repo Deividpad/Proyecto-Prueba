@@ -19,8 +19,8 @@ class RutasController
             RutasController::editar();
         }else if ($action == "buscarID"){
             RutasController::buscarID();
-        }else if ($action == "gestionarAerolinea"){
-            RutasController::gestionarAerolinea();
+        }else if ($action == "gestionarRutas"){
+            RutasController::gestionarRutas();
         }else if ($action == "ActivarRuta"){
             RutasController::ActivarRuta();
         }else if ($action == "InactivarRuta"){
@@ -36,9 +36,9 @@ class RutasController
                     $arrayRuta = array();
                     $arrayRuta['Origen'] = $_POST['idCiudades'];
                     $arrayRuta['Destino'] = $_POST['idCiudades2'];
+                    $arrayRuta['Duracion'] = $_POST['Hora'];
                     $arrayRuta['Precio_Negocios']= $_POST['PrecioNegocio'];
                     $arrayRuta['Precio_Economico']= $_POST['PrecioEconomico'];
-                    $arrayRuta['Duracion'] = $_POST['Hora'];
                     $arrayRuta['Estado'] = $_POST['Estado'];
                     $Rutas = new Rutas($arrayRuta);
                     //var_dump($arrayAvion);

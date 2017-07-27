@@ -176,14 +176,41 @@ class Clientes extends db_abstract_class
         return $arrayclientes;
     }
 
+    public static function buscarid($query)
+    {
+        $tmp = new Clientes();
+        $getrows = $tmp->getRows($query);
+        $id = 0;
+        foreach ($getrows as $valor) {
+            $id = $valor['MAX(idPasajero)'];
+        }
+
+        $tmp->Disconnect();
+        return $id;
+    }
+
     public static function getAll()
     {
         return Clientes::buscar("SELECT * FROM pasajero");
     }
 
+    public static function getid()
+    {
+        return Clientes::buscarid("SELECT MAX(idPasajero) FROM pasajero");
+    }
+
     public function insertar()
     {
-
+         $this->insertRow("INSERT INTO aerolinea.pasajero VALUES (NULL, ?,?,?,?,?,?) ", array(
+                $this->Tipo_Documento,
+                $this->Documento,
+                $this->Nombre,
+                $this->Apellido,
+                $this->Telefono,
+                $this->Direccion,
+            )
+        );
+        $this->Disconnect();
     }
 
     public function editar()

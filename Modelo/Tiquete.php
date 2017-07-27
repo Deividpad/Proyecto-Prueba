@@ -6,7 +6,10 @@
  * Date: 10/07/2017
  * Time: 12:16 PM
  */
-class tiquete extends db_abstract_class
+
+require_once('db_abstract_class.php');
+
+class Tiquete extends db_abstract_class
 {
     private $idTiquete;
     private $Clase;
@@ -186,9 +189,21 @@ class tiquete extends db_abstract_class
         // TODO: Implement getAll() method.
     }
 
-    protected function insertar()
+    public function insertar()
     {
+        $this->insertRow("INSERT INTO aerolinea.tiquete VALUES (NULL, ?,?,?,?,?,?,?)", array(
 
+                $this->Clase,
+                $this->Numero_Asiento,
+                $this->Valor,
+                $this->Estado,
+                $this->Pasajero_idPasajero,
+                $this->Vuelo_idVuelo,
+                $this->Combo_idCombo,
+
+            )
+        );
+        $this->Disconnect();
     }
 
     protected function editar()

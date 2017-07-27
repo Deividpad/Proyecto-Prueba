@@ -1,5 +1,6 @@
 <?php 
 session_start();
+session_unset($_SESSION['idc2']);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +12,7 @@ session_start();
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Pasajero </title>
+    <title>Cliente </title>
 
     <!-- Bootstrap CSS -->    
     <link href="NiceAdmin/css/bootstrap.min.css" rel="stylesheet">
@@ -55,30 +56,47 @@ session_start();
           <section class="wrapper">
 		  <div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header" style="color: black; "><i class="fa fa-files-o"></i> Registrar Pasajero</h3>
+					<h3 class="page-header" style="color: black; "><i class="fa fa-files-o"></i> Registrar Cliente</h3>
 					<ol class="breadcrumb">
 						<li><i class="fa fa-home"></i><a href="index.php">Inicio</a></li>
-						<li><i class="icon_document_alt"></i>Pasajeros</li>
-						<li><i class="fa fa-files-o"></i>Registrar Pasajeros</li>
+						<li><i class="icon_document_alt"></i>Clientes</li>
+						<li><i class="fa fa-files-o"></i>Registrar cliente</li>
 					</ol>
 				</div>
 			</div>
+
+              <?php if(!empty($_GET['respuesta'])){ ?>
+                  <?php if ($_GET['respuesta'] == "correcto"){ ?>
+                      <div class="alert alert-success alert-dismissible fade in" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                          </button>
+                          <strong>El Cliente!</strong> se ha creado correctamente.
+                      </div>
+                  <?php }else {?>
+                      <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                          </button>
+                          <strong>Error!</strong> No se pudo ingresar el Cliente intentalo nuevamente <br>Verifique que todos los campos este completados!!
+                      </div>
+                  <?php } ?>
+              <?php } ?>
+
               <!-- Form validations -->              
               <div class="row">
                   <div class="col-lg-12">
                       <section class="panel">
                           <header class="panel-heading">
-                              Datos del Pasajero
+                              Datos del Cliente
                           </header>
                           <div class="panel-body">
                               <div class="form">
-                                  <form class="form-horizontal form-label-left" method="post" action="../Controlador/Pasajerocontroller.php?action=crear" >
+                                  <form class="form-horizontal form-label-left" method="post" action="../Controlador/ClientesController.php?action=crear" >
 
 
                                       <div class="form-group ">
                                           <label for="curl" class="control-label col-lg-2">Tipo Documento</label>
                                           <div class="col-lg-10">                                   
-                                              <select id="Tipo" class="form-control input-sm m-bot15">
+                                              <select id="Tipo_Documento" name="Tipo_Documento" class="form-control input-sm m-bot15">
                                               <option>C.C</option>
                                               <option>T.I</option>
                                               <option>C.E</option>
@@ -92,7 +110,7 @@ session_start();
                                           <label for="cemail" class="control-label col-lg-2">Documento <span class="required">*</span></label>
                                           <div class="col-lg-10">
                                               <input class="form-control " id="Documento" name="Documento" type="number" required />                                         
-                                              <input  value="<?php $id = $_GET['idVuelo']; echo $id;?>" id="vueloinicio" name="vueloinicio" placeholder="id del vuelo"/>
+
                                           </div>
                                       </div>
 
@@ -127,7 +145,7 @@ session_start();
                                     
                                       <div class="form-group">
                                           <div class="col-lg-offset-2 col-lg-10">
-                                              <button class="btn btn-primary" type="submit" style="background: gray; background-color: black;"><a href="crearTiquete.php">Registrar e ir a Crear Tiquete</a></button>
+                                              <button class="btn btn-primary" type="submit" style="background: gray; background-color: black;">Registrar e ir a Crear Tiquete</button>
                                               <button class="btn btn-default" type="button"><a href="index.php">Cancelar</a></button>
                                           </div>
                                       </div>

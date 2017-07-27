@@ -1,11 +1,16 @@
-<!DOCTYPE html>
-<?php require "../Controlador/ClientesController.php";
+<?php
 //session_start();
+require "../Controlador/ClientesController.php";
 
-//$id = $_GET['idVuelo'];
-//$sessionid = $_SESSION[id];
+if(!empty($_GET) ){
+    //echo "No esta vacio";
+    $_SESSION["dd"] = $_GET['idVuelo'];
 
+}else {
+    echo "Esta vacio";
+}
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">

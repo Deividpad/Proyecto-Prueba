@@ -91,9 +91,9 @@ class Rutas extends db_abstract_class
 
                 $this->Origen,
                 $this->Destino,
+                $this->Duracion,
                 $this->Precio_Negocios,
                 $this->Precio_Economico,
-                $this->Duracion,
                 $this->Estado,
             )
         );

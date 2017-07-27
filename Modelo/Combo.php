@@ -6,7 +6,9 @@
  * Date: 10/07/2017
  * Time: 12:05 PM
  */
-class combo extends db_abstract_class
+require_once('db_abstract_class.php');
+
+class Combo extends db_abstract_class
 {
     private $idCombo;
     private $Ninos;
@@ -153,32 +155,43 @@ class combo extends db_abstract_class
         $this->Vuelo_idVuelo = $Vuelo_idVuelo;
     }
 
-    protected static function buscarForId($id)
+    public static function buscarForId($id)
     {
         // TODO: Implement buscarForId() method.
     }
 
-    protected static function buscar($query)
+    public static function buscar($query)
     {
         // TODO: Implement buscar() method.
     }
 
-    protected static function getAll()
+    public static function getAll()
     {
         // TODO: Implement getAll() method.
     }
 
-    protected function insertar()
+    public function insertar()
     {
+        $this->insertRow("INSERT INTO aerolinea.combo VALUES (NULL, ?,?,?,?,?,?)", array(
 
+                $this->Ninos,
+                $this->Adultos,
+                $this->Fecha_Ida,
+                $this->Fecha_Vuelta,
+                $this->Precio,
+                $this->Vuelo_idVuelo,
+
+            )
+        );
+        $this->Disconnect();
     }
 
-    protected function editar()
+    public function editar()
     {
         // TODO: Implement editar() method.
     }
 
-    protected function eliminar($id)
+    public function eliminar($id)
     {
         // TODO: Implement eliminar() method.
     }

@@ -84,9 +84,9 @@
                     <th>Id Ruta</th>
                     <th>Origen</th>
                     <th>Destino</th>
+                      <th>Duración(Hrs)</th>
                     <th>Precio Negocios</th>
                     <th>Precio Economico</th>
-                    <th>Duración(Hrs)</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                   </tr>

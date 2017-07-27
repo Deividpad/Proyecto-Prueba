@@ -1,3 +1,13 @@
+<?php
+require "../Controlador/ComboController.php";
+
+if(!empty($_GET) ){
+//echo "No esta vacio";
+$_SESSION["idv"] = $_GET['idvuelo'];
+}else
+echo "Esta vacio";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -69,34 +79,34 @@
                           </header>
                           <div class="panel-body">
                               <div class="form">
-                                  <form class="form-validate form-horizontal" id="feedback_form" method="get" action="">
+                                  <form class="form-horizontal form-label-left" method="post" action="../Controlador/ComboController.php?action=crear" >
 
 
                                       <div class="form-group ">
                                           <label for="cemail" class="control-label col-lg-2">Niños <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control " id="Ninos" name="Ninos" type="number" required />
+                                              <input class="form-control " id="Ninos" min="1" max="10" name="Ninos" type="number" required />
                                           </div>
                                       </div>
 
                                       <div class="form-group ">
                                           <label for="cemail" class="control-label col-lg-2">Adultos <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control " id="Adultos" name="Adultos" type="number" required />
+                                              <input class="form-control " id="Adultos" min="1" max="10" name="Adultos" type="number" required />
                                           </div>
                                       </div>
 
                                       <div class="form-group ">
-                                          <label for="cname" class="control-label col-lg-2">Fecha Ida<span class="required">*</span></label>
+                                          <label for="cname" class="control-label col-lg-2">Fecha <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" disabled id="Ida" name="Ida" minlength="5" type="text" value="<?php echo date("m/d/Y") ?>" required />
+                                              <input class="form-control" id="FechaI" name="FechaI" type="date"  required /> <!--min="2017-01-01"  max="2017-01-01"-->
                                           </div>
                                       </div>
 
                                       <div class="form-group ">
                                           <label for="cname" class="control-label col-lg-2">Fecha Vuelta<span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" disabled id="Vuelta" name="Vuelta" minlength="5" type="text" value="<?php echo date("m/d/Y") ?>" required />
+                                              <input class="form-control" id="FechaV" name="FechaV" type="date" required />
                                           </div>
                                       </div>
 

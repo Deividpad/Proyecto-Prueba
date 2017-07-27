@@ -1,34 +1,32 @@
 <?php
-require_once (__DIR__.'/../Modelo/Vuelo.php');
-require_once (__DIR__.'/../Modelo/Avion.php');
-require_once (__DIR__.'/../Modelo/Aerolinea.php');
-require_once (__DIR__.'/../Modelo/Rutas.php');
-require_once (__DIR__.'/../Modelo/Ciudades.php');
+session_start();
+require_once (__DIR__.'/../Modelo/Combo.php');
+
 
 if(!empty($_GET['action'])){
-    VueloController::main($_GET['action']);
+    ComboController::main($_GET['action']);
 }else{
     echo "No se encontro ninguna accion...";
 }
 
-class VueloController
+class ComboController
 {
     static function main($action)
     {
         if ($action == "crear") {
-            VueloController::crear();
+            ComboController::crear();
         } else if ($action == "editar") {
-            VueloController::editar();
+            ComboController::editar();
         } else if ($action == "buscarID") {
-            VueloController::buscarID();
+            ComboController::buscarID();
         } else if ($action == "gestionarVuelo") {
-            VueloController::gestionarVuelo();
+            ComboController::gestionarVuelo();
         } else if ($action == "InactivarVuelo") {
-            VueloController::InactivarVuelo();
+            ComboController::InactivarVuelo();
         } else if ($action == "ActivarVuelo") {
-            VueloController::ActivarVuelo();
+            ComboController::ActivarVuelo();
         } else if ($action == "RealizadoVuelo") {
-            VueloController::RealizadoVuelo();
+            ComboController::RealizadoVuelo();
         }
 
     }
@@ -50,78 +48,29 @@ class VueloController
         }
     }
 
-    static public function Fecha(){
-        /*$arrayVuelo = vuelo::getAll();
-        $Actual = date('Y-m-d');
-        $t = strototime("$Actual");
-        //echo "La  actual ".$Actual;
-        $ingreso = strtotime($_POST['Fecha']);
-        //echo "La que ingreso".$ingreso;
-        if ($ingreso > $t ){
-                echo "Es menor no entiende";
-        }else{
-            echo "Me sirve";
-        }*/
-
-        $fecha = $_POST['Fecha'];
-        $fecha2 = explode(" ",$fecha);
-        $fecha3 = $fecha2[0];
-        $fecha4 = strtotime("$fecha3 +0 week");
-        $fechaHoy = date('Y-m-d');
-        $fechaHoy2 = strtotime("$fechaHoy");
-        if($fecha4 >= $fechaHoy2){
-            $entra = strtotime($_POST['Hora'])."<br>";
-            $horaActual = gettimeofday(true);
-
-            //$r= localtime(true);
-
-            if ($entra < $horaActual){
-                //echo " La hora no me sirve ";
-            }else{
-                //echo "Me sirve la hora";
-            }
-
-        }else{
-            echo "Es menor no entiende";
-        }
-
-    }
     static public function crear()
     {
-        echo self::Fecha();
-        if ($_POST['Avion_idAvion'] >= 1 && $_POST['Rutas_idRutas']>=1) {
-                $res = self::TiempoVuelo();
-                if ($res ==1) {
                     try {
-                        $arrayVuelo = array();
-                        $arrayVuelo['Fecha'] = $_POST['Fecha'];
-                        $arrayVuelo['Hora'] = $_POST['Hora'];
-                        $arrayVuelo['Tipo'] = $_POST['Tipo'];
-                        $arrayVuelo['Avion_idAvion'] = $_POST['Avion_idAvion'];
-                        $arrayVuelo['Rutas_idRutas'] = $_POST['Rutas_idRutas'];;
-                        $arrayVuelo['Estado'] = $_POST['Estado'];
-                        $Vuelo = new vuelo($arrayVuelo);
-                        $Vuelo->insertar();
-                        $id = $_POST['Avion_idAvion'];
-                        $ObjAvion = avion::buscarForId($id);
-                        $ObjAvion->setEstado("Destinado");
-                        //$ObjAvion->editar($id);
-                        //var_dump($Vuelo);
+                        $arrayCombo = array();
+                        $arrayCombo['Ninos'] = $_POST['Ninos'];
+                        $arrayCombo['Adultos'] = $_POST['Adultos'];
+                        $arrayCombo['Fecha_Ida'] = $_POST['FechaI'];
+                        $arrayCombo['Fecha_Vuelta'] = $_POST['FechaV'];
+                        $arrayCombo['Precio'] = $_POST['Precio'];
+                        $arrayCombo['Vuelo_idVuelo'] = $_SESSION["idv"];
+                        $combo = new Combo($arrayCombo);
+                        //var_dump($combo);
+                        $combo->insertar();
+
+
+
+
 
                         //header("Location: ../Vista/crearVuelo.php?respuesta=correcto");
                     } catch (Exception $e) {
                         echo "Error";
-                        header("Location: ../Vista/crearVuelo.php?respuesta=error");
+                        //header("Location: ../Vista/crearVuelo.php?respuesta=error");
                     }
-                }else{
-                    header("Location: ../Vista/crearVuelo.php?respuesta=errortiempo");
-                }
-
-
-        } else {
-            header("Location: ../Vista/crearVuelo.php?respuesta=error");
-            //echo "error no hay R disponibles";
-        }
     }
 
 
@@ -205,7 +154,7 @@ class VueloController
             $Destino = $ciudad2->getCiudad();
             $htmlTable .= "<td> $Destino</td>";
             $htmlTable .= "<td>" . $ObjVuelo->getEstado() . "</td>";
-            /*$icons = "";
+            $icons = "";
             if ($ObjVuelo->getEstado() == "Realizado") {
                 $icons = "<a class='btn btn-danger' disabled href='../Controlador/VueloController.php?action=RealizadoVuelo&IdVuelo=" . $ObjVuelo->getidVuelo() . "' title='Bootstrap 3 themes generator'>Vuelo Realizado</a>";
             } else {
@@ -215,27 +164,8 @@ class VueloController
                                       <a a data-toggle='tooltip' title='Inactivar Vuelo' class='btn btn-danger' href='../Controlador/VueloController.php?action=InactivarVuelo&IdVuelo=" . $ObjVuelo->getidVuelo() . "'><i class='icon_close_alt2'></i></a>
                                       <a class='btn btn-primary' href='../Controlador/VueloController.php?action=RealizadoVuelo&IdVuelo=" . $ObjVuelo->getidVuelo() . "' title='Bootstrap 3 themes generator'>Marcar Como Realizado</a>
                                   </div>";
-            }*/
-
-            $icons = "";
-            if ($ObjVuelo->getEstado() == "Inactivo") {
-                    $icons .= "<a data-toggle='tooltip' title='Activar Vuelo' data-placement='top' class='btn btn-social-icon btn-danger newTooltip' 
-                    href='../Controlador/VueloController.php?action=ActivarVuelo&IdVuelo=" . $ObjVuelo->getidVuelo() . "'><i class='fa fa-times'></i></a>";
-                if ($ObjVuelo->getTipo() =="Ida-Vuelta") {
-                    $icons .= "<a class='btn btn-primary' title='Agregar Combo' href='crearCombo.php'><i class='icon_plus_alt2'></i></a>";
-                }
-                $icons .= "<a class='btn btn-primary' href='../Controlador/VueloController.php?action=RealizadoVuelo&IdVuelo=" . $ObjVuelo->getidVuelo() . "' title='Bootstrap 3 themes generator'>Realizar Vuelo</a>";
-
-            } else if ($ObjVuelo->getEstado() == "Activo") {                
-                $icons .= "<a data-toggle='tooltip' title='Inactivar Vuelo' data-placement='top' class='btn btn-social-icon btn-success newTooltip' 
-                    href='../Controlador/VueloController.php?action=InactivarVuelo&IdVuelo=" . $ObjVuelo->getidVuelo() ."'><i class='fa fa-check'></i></a>";
-                if ($ObjVuelo->getTipo() =="Ida-Vuelta") {
-                    $icons .= "<a class='btn btn-primary' title='Agregar Combo' href='crearCombo.php?idvuelo=".$ObjVuelo->getidVuelo()."'><i class='icon_plus_alt2'></i></a>";
-                }
-                $icons .= "<a class='btn btn-primary' href='../Controlador/VueloController.php?action=RealizadoVuelo&IdVuelo=" . $ObjVuelo->getidVuelo() . "' title='Bootstrap 3 themes generator'>Realizar Vuelo</a>";
-            }else if ($ObjVuelo->getEstado() == "Realizado") {
-                $icons = "<a class='btn btn-danger' disabled href='../Controlador/VueloController.php?action=RealizadoVuelo&IdVuelo=" . $ObjVuelo->getidVuelo() . "' title='Bootstrap 3 themes generator'>Vuelo Realizado</a>";
             }
+
             $htmlTable .= "<td>$icons</td>";
             //$htmlTable .= "<a class='btn btn-primary'href='crearAerolinea.php'><i class='icon_plus_alt2'></i>Agregar Avion</a>";
             //$htmlTable .= "</td>";

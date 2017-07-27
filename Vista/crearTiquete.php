@@ -1,3 +1,8 @@
+<?php
+session_start();
+//$id = $_SESSION['idCliente'];
+//$id = $_SESSION['idCliente'];
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -69,13 +74,17 @@
                           </header>
                           <div class="panel-body">
                               <div class="form">
-                                  <form class="form-validate form-horizontal" id="feedback_form" method="get" action="">
+                                      <form class="form-horizontal form-label-left" method="post" action="../Controlador/TiqueteController.php?action=crear" >
+                                      <div class="form-group ">
+                                          <div class="col-lg-10">
+                                              <input class="form " hidden id="idCliente" name="idCliente" type="text" value="<?php echo $_SESSION["dd"];  ?>" required />
+                                          </div>
+                                      </div>
 
-                                                                                                 
                                       <div class="form-group ">
                                           <label for="curl" class="control-label col-lg-2">Clase</label>
                                           <div class="col-lg-10">                                   
-                                              <select id="Clase" class="form-control input-sm m-bot15">
+                                              <select id="Clase" name="Clase" class="form-control input-sm m-bot15">
                                               <option>Empresarial</option>
                                               <option>Economica</option>                                              
                                           </select>
@@ -85,7 +94,7 @@
                                       <div class="form-group ">
                                           <label for="curl" class="control-label col-lg-2">N° Asiento</label>
                                           <div class="col-lg-10">                                   
-                                              <select id="Asiento" class="form-control input-sm m-bot15">
+                                              <select id="Numero_Asiento" name="Numero_Asiento" class="form-control input-sm m-bot15">
                                               <option>1</option>
                                               <option>4</option>
                                               <option>8</option>                                              
@@ -96,14 +105,14 @@
                                       <div class="form-group ">
                                           <label for="cemail" class="control-label col-lg-2">Precio <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control " id="Precio" name="Precio" type="number" required />
+                                              <input class="form-control " id="Valor" name="Valor" type="number" required />
                                           </div>
                                       </div>
                                       
                                       <div class="form-group ">
                                           <label for="curl" class="control-label col-lg-2">Estado</label>
                                           <div class="col-lg-10">                                   
-                                              <select id="Estado" class="form-control input-sm m-bot15">
+                                              <select id="Estado" name="Estado" class="form-control input-sm m-bot15">
                                               <option>Activo</option>
                                               <option>Inactivo</option>
                                               
